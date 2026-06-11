@@ -1,12 +1,12 @@
 import Header from "../Header/Header";
 
-function Main() {
+function SavedNews() {
   return (
     <>
       <Header />
-      <h1>Main Page</h1>
+      <h1>Saved News Page</h1>
     </>
   );
 }
 
-export default Main;
+export default SavedNews;
