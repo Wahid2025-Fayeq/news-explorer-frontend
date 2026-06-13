@@ -1,0 +1,18 @@
+.header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 104px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header__title {
+  text-decoration: none;
+  line-height: 24px;
+  color: #ffffff;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}

@@ -1,0 +1,9 @@
+.hero {
+  min-height: 576px;
+  background-image: url("../../images/hero-background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #d1d2d6;
+  color: white;
+}

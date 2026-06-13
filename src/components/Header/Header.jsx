@@ -6,7 +6,7 @@ function Header() {
   return (
     <header className="header">
       <Link to="/" className="header__title">
-        News Explorer
+        NewsExplorer
       </Link>
       <Navigation />
     </header>

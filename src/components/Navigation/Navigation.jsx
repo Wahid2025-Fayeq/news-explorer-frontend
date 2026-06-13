@@ -4,8 +4,13 @@ import "./Navigation.css";
 function Navigation() {
   return (
     <nav className="navigation">
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/saved-news">Saved News</NavLink>
+      <NavLink to="/" className="navigation__link">
+        Home
+      </NavLink>
+
+      <button type="button" className="navigation__button">
+        Sign In
+      </button>
     </nav>
   );
 }
