@@ -1,14 +1,16 @@
 .navigation {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 42px;
 }
 
 .navigation a {
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+  line-height: 24px;
+  font-size: 18px;
 }
 
 .navigation button {
@@ -18,7 +20,8 @@
   font-weight: 500;
   border-radius: 100px;
   background-color: transparent;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid #ffffff;
+  color: #ffffff;
   cursor: pointer;
+  font-size: 18px;
 }
