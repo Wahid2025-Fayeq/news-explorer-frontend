@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import closeIcom from "../../assets/close.svg";
+import closeIcon from "../../assets/close.svg";
 import "./ModalWithForm.css";
 
 function ModalWithForm({ isOpen, onClose, title, children }) {
@@ -23,10 +23,10 @@ function ModalWithForm({ isOpen, onClose, title, children }) {
     <div className={`modal ${isOpen ? "modal_opened" : ""}`} onClick={onClose}>
       <div className="modal__content" onClick={(e) => e.stopPropagation()}>
         <button type="button" className="modal__close" onClick={onClose}>
-          <img src={closeIcom} alt="Close" className="modal__close-icon" />
+          <img src={closeIcon} alt="Close" className="modal__close-icon" />
         </button>
 
-        <h2>{title}</h2>
+        <h2 className="modal__title">{title}</h2>
 
         {children}
       </div>

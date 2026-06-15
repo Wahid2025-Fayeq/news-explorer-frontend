@@ -4,7 +4,14 @@ import "./Navigation.css";
 function Navigation({ onLoginClick }) {
   return (
     <nav className="navigation">
-      <NavLink to="/" className="navigation__link">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive
+            ? "navigation__link navigation__link_active"
+            : "navigation__link"
+        }
+      >
         Home
       </NavLink>
 

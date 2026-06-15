@@ -1,5 +1,5 @@
 import "./NewsCard.css";
-import bookmarktIcon from "../../assets/bookmark.svg";
+import bookmarkIcon from "../../assets/bookmark.svg";
 
 function NewsCard({ card }) {
   return (
@@ -7,13 +7,13 @@ function NewsCard({ card }) {
       <div className="news-card__image-wrapper">
         <img
           src={card.urlToImage}
-          alt={card.title}
+          alt={card.title || "News article"}
           className="news-card__image"
         />
 
         <button type="button" className="news-card__save-button">
           <img
-            src={bookmarktIcon}
+            src={bookmarkIcon}
             alt="Save article"
             className="news-card__save-icon"
           />
@@ -29,11 +29,17 @@ function NewsCard({ card }) {
           })}
         </p>
 
-        <h3 className="news-card__title">{card.title}</h3>
+        <h3 className="news-card__title">
+          {card.title || "No title available"}
+        </h3>
 
-        <p className="news-card__description">{card.description}</p>
+        <p className="news-card__description">
+          {card.description || "No description available"}
+        </p>
 
-        <p className="news-card__source">{card.source.name}</p>
+        <p className="news-card__source">
+          {card.source?.name || "Unknown Source"}
+        </p>
       </div>
     </article>
   );

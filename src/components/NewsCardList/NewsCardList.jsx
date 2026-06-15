@@ -2,13 +2,13 @@ import { newsCards } from "../../utils/constants";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList() {
+function NewsCardList({ cards }) {
   return (
     <section className="news-card-list">
       <h2 className="news-card-list__title">Search results</h2>
 
       <div className="news-card-list__grid">
-        {newsCards.map((card) => (
+        {cards.map((card) => (
           <NewsCard key={card.title} card={card} />
         ))}
       </div>
