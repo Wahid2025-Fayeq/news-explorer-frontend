@@ -98,8 +98,6 @@
   text-transform: uppercase;
 }
 
-/* Tablet */
-
 @media screen and (max-width: 768px) {
   .news-card {
     min-height: 420px;
@@ -124,9 +122,7 @@
   }
 }
 
-/* Mobile */
-
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 320px) {
   .news-card {
     min-height: auto;
   }

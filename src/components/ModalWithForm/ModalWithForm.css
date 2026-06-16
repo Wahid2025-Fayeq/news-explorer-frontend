@@ -57,7 +57,7 @@
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 320px) {
   .modal__content {
     width: calc(100% - 32px);
     min-height: auto;

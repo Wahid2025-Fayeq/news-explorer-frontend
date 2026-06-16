@@ -36,3 +36,28 @@
   cursor: pointer;
   font-size: 18px;
 }
+
+@media screen and (max-width: 768px) {
+  .navigation {
+    gap: 20px;
+  }
+
+  .navigation__link {
+    font-size: 16px;
+  }
+
+  .navigation__button {
+    width: 152px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .navigation__link_active::after {
+    bottom: -21px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .navigation {
+    display: none;
+  }
+}

@@ -57,7 +57,7 @@
 
 /* Mobile */
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 320px) {
   .login-form__input {
     font-size: 14px;
     line-height: 17px;

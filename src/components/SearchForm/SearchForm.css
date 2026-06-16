@@ -62,7 +62,7 @@
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 320px) {
   .search-form__field {
     flex-direction: column;
     gap: 16px;

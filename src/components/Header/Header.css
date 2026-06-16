@@ -28,7 +28,7 @@
 
 /* Mobile */
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 320px) {
   .header {
     height: 56px;
     padding: 0 16px;
