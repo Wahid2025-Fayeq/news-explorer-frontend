@@ -7,3 +7,18 @@
   background-color: #d1d2d6;
   color: white;
 }
+.search-results {
+  background-color: #f5f6f7;
+  padding: 80px 104px;
+}
+@media screen and (max-width: 768px) {
+  .search-results {
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .search-results {
+    padding: 32px 16px;
+  }
+}

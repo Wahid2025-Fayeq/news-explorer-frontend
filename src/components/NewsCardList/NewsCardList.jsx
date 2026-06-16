@@ -1,8 +1,7 @@
-import { newsCards } from "../../utils/constants";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList({ cards }) {
+function NewsCardList({ cards, onShowMore, showMoreVisible }) {
   return (
     <section className="news-card-list">
       <h2 className="news-card-list__title">Search results</h2>
@@ -13,9 +12,15 @@ function NewsCardList({ cards }) {
         ))}
       </div>
 
-      <button type="button" className="news-card-list__button">
-        Show more
-      </button>
+      {showMoreVisible && (
+        <button
+          type="button"
+          className="news-card-list__button"
+          onClick={onShowMore}
+        >
+          Show More
+        </button>
+      )}
     </section>
   );
 }

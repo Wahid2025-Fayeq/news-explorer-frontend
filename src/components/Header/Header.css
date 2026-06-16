@@ -15,3 +15,27 @@
   font-size: 20px;
   font-weight: 700;
 }
+@media screen and (max-width: 768px) {
+  .header {
+    height: 66px;
+    padding: 0 40px;
+  }
+
+  .header__title {
+    font-size: 20px;
+  }
+}
+
+/* Mobile */
+
+@media screen and (max-width: 420px) {
+  .header {
+    height: 56px;
+    padding: 0 16px;
+  }
+
+  .header__title {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

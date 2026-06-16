@@ -13,7 +13,9 @@ function Main({
   articles,
   isLoading,
   hasSearched,
-  searchError,
+  error,
+  onShowMore,
+  showMoreVisible,
 }) {
   return (
     <>
@@ -27,14 +29,27 @@ function Main({
 
       {isLoading && <Preloader />}
 
-      {!isLoading && searchError && (
+      {!isLoading && error && (
         <section className="search-results">
-          <p>{searchError}</p>
+          <p>{error}</p>
         </section>
       )}
 
-      {!isLoading && hasSearched && !searchError && articles.length > 0 && (
-        <NewsCardList cards={articles} />
+      {!isLoading && hasSearched && !error && articles.length === 0 && (
+        <section className="search-results">
+          <h2>Nothing found</h2>
+          <p>Sorry, but nothing matched your search term.</p>
+        </section>
+      )}
+
+      {!isLoading && hasSearched && !error && articles.length > 0 && (
+        <section className="search-results">
+          <NewsCardList
+            cards={articles}
+            onShowMore={onShowMore}
+            showMoreVisible={showMoreVisible}
+          />
+        </section>
       )}
 
       <About />

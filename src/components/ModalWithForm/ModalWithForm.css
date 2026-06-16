@@ -50,3 +50,32 @@
   line-height: 100%;
   font-weight: 900;
 }
+
+@media screen and (max-width: 768px) {
+  .modal__content {
+    width: 430px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .modal__content {
+    width: calc(100% - 32px);
+    min-height: auto;
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  .modal__close {
+    top: -40px;
+    right: 0;
+  }
+
+  .modal__close-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .modal__title {
+    font-size: 24px;
+  }
+}

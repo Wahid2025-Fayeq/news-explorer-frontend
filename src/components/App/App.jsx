@@ -11,7 +11,8 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
-  const [searchError, setSearchError] = useState("");
+  const [error, setError] = useState("");
+  const [visibleCards, setVisibleCards] = useState(3);
 
   const handleLoginClick = () => {
     setIsLoginModalOpen(true);
@@ -23,22 +24,28 @@ function App() {
 
   const handleSearch = (keyword) => {
     setIsLoading(true);
+    setError("");
     setHasSearched(true);
-    setSearchError("");
+    setVisibleCards(3);
 
     getNews(keyword)
       .then((data) => {
         setArticles(data.articles || []);
       })
       .catch(() => {
-        setSearchError(
+        setArticles([]);
+        setError(
           "Sorry, something went wrong during the request. Please try again later.",
         );
-        setArticles([]);
       })
+
       .finally(() => {
         setIsLoading(false);
       });
+  };
+
+  const handleShowMore = () => {
+    setVisibleCards((prev) => prev + 3);
   };
 
   return (
@@ -50,10 +57,12 @@ function App() {
             <Main
               onLoginClick={handleLoginClick}
               onSearch={handleSearch}
-              articles={articles}
+              articles={articles.slice(0, visibleCards)}
               isLoading={isLoading}
               hasSearched={hasSearched}
-              searchError={searchError}
+              onShowMore={handleShowMore}
+              error={error}
+              showMoreVisible={visibleCards < articles.length}
             />
           }
         />

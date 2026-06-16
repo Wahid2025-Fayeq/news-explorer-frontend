@@ -4,7 +4,13 @@ function SavedNews() {
   return (
     <>
       <Header />
-      <h1>Saved News Page</h1>
+
+      <main className="saved-news">
+        <h1 className="saved-news__title">Saved articles</h1>
+        <p className="saved-news__text">
+          This page will display saved articles.
+        </p>
+      </main>
     </>
   );
 }

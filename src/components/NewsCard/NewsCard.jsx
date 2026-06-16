@@ -18,6 +18,8 @@ function NewsCard({ card }) {
             className="news-card__save-icon"
           />
         </button>
+
+        <div className="news-card__tooltip">Sign in to save articles</div>
       </div>
 
       <div className="news-card__content">
