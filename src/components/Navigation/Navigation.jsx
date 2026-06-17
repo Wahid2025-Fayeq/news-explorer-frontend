@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
-function Navigation({ onLoginClick }) {
+function Navigation({ onLoginClick, isMenuOpen }) {
   return (
-    <nav className="navigation">
+    <nav className={`navigation ${isMenuOpen ? "navigation_opened" : ""}`}>
       <NavLink
         to="/"
         className={({ isActive }) =>

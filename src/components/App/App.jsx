@@ -13,9 +13,15 @@ function App() {
   const [hasSearched, setHasSearched] = useState(false);
   const [error, setError] = useState("");
   const [visibleCards, setVisibleCards] = useState(3);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLoginClick = () => {
     setIsLoginModalOpen(true);
+    setIsMenuOpen(false);
+  };
+
+  const handleMenuClick = () => {
+    setIsMenuOpen((prev) => !prev);
   };
 
   const closeModal = () => {
@@ -63,6 +69,8 @@ function App() {
               onShowMore={handleShowMore}
               error={error}
               showMoreVisible={visibleCards < articles.length}
+              onMenuClick={handleMenuClick}
+              isMenuOpen={isMenuOpen}
             />
           }
         />

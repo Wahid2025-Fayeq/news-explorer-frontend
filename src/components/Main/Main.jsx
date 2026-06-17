@@ -16,6 +16,8 @@ function Main({
   error,
   onShowMore,
   showMoreVisible,
+  onMenuClick,
+  isMenuOpen,
 }) {
   return (
     <>
@@ -23,7 +25,7 @@ function Main({
         className="hero"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <Header onLoginClick={onLoginClick} />
+        <Header onLoginClick={onLoginClick} onMenuClick={onMenuClick} isMenuOpen={isMenuOpen} />
         <SearchForm onSearch={onSearch} />
       </section>
 

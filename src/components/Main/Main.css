@@ -1,5 +1,5 @@
 .hero {
-  min-height: 576px;
+  min-height: 420px;
   background-image: url("../../images/hero-background.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -11,13 +11,17 @@
   background-color: #f5f6f7;
   padding: 80px 104px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1023px) {
   .search-results {
     padding: 40px;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 767px) {
+  .hero {
+    min-height: 536px;
+  }
+
   .search-results {
     padding: 32px 16px;
   }
