@@ -1,5 +1,9 @@
 # News Explorer Frontend
 
+## Live Demo
+
+https://wahid2025-fayeq.github.io/news-explorer-frontend/
+
 ## Overview
 
 News Explorer is a responsive news search application built with React and Vite. Users can search for the latest news articles by keyword and view results from a live news API. The project focuses on modern frontend development practices, responsive design, API integration, and component-based architecture.
