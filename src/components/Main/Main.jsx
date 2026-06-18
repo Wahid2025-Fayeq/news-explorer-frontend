@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import heroImage from "../../assets/hero-background.png";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import Preloader from "../Preloader/Preloader";
+import notFoundIcon from "../../assets/not-found.svg";
 import "./Main.css";
 
 function Main({
@@ -25,7 +26,11 @@ function Main({
         className="hero"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <Header onLoginClick={onLoginClick} onMenuClick={onMenuClick} isMenuOpen={isMenuOpen} />
+        <Header
+          onLoginClick={onLoginClick}
+          onMenuClick={onMenuClick}
+          isMenuOpen={isMenuOpen}
+        />
         <SearchForm onSearch={onSearch} />
       </section>
 
@@ -38,9 +43,18 @@ function Main({
       )}
 
       {!isLoading && hasSearched && !error && articles.length === 0 && (
-        <section className="search-results">
-          <h2>Nothing found</h2>
-          <p>Sorry, but nothing matched your search term.</p>
+        <section className="search-results search-results_type_not-found">
+          <img
+            src={notFoundIcon}
+            alt="Not found"
+            className="search-results__icon"
+          />
+         <h2 className="search-results__not-found-title">
+    Nothing found
+  </h2>
+          <p className="search-results__not-found-text">
+            Sorry, but nothing matched your search term.
+          </p>
         </section>
       )}
 

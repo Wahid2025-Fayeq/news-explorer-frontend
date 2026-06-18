@@ -1,3 +1,4 @@
+import authorPhoto from "../../assets/author.svg";
 import "./About.css";
 
 function About() {
@@ -5,7 +6,7 @@ function About() {
     <section className="about">
       <div className="about__image">
         <p className="about__image-text">
-          Placeholder image. <br /> Put an image of yourself here{" "}
+          <img src={authorPhoto} alt="Author" />
         </p>
       </div>
 

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
+import menuIcon from "../../assets/menu.svg";
+import closeIcon from "../../assets/close.svg";
 import "./Header.css";
 
 function Header({ onLoginClick, onMenuClick, isMenuOpen }) {
@@ -14,8 +16,11 @@ function Header({ onLoginClick, onMenuClick, isMenuOpen }) {
         className="header__menu-button"
         onClick={onMenuClick}
       >
-        <span className="header__menu-line"></span>
-        <span className="header__menu-line"></span>
+        <img
+          src={isMenuOpen ? closeIcon : menuIcon}
+          alt={isMenuOpen ? "Close menu" : "Open menu"}
+          className="header__menu-icon"
+        />
       </button>
       <Navigation onLoginClick={onLoginClick} isMenuOpen={isMenuOpen} />
     </header>

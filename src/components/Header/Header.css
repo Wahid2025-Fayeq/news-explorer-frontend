@@ -23,16 +23,17 @@
   width: 24px;
   height: 24px;
   padding: 0;
+  cursor: pointer;
   border: none;
   background: transparent;
 }
 
-.header__menu-line {
-  width: 16px;
-  height: 2px;
-  background-color: #ffffff;
+.header__menu-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  color: #ffffff;
 }
-
 @media screen and (max-width: 1023px) {
   .header {
     padding: 0 40px;
