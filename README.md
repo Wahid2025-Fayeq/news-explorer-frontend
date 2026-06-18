@@ -152,11 +152,16 @@ npm run build
 
 ---
 
-## Author
+## About the Author
 
-Wahid Fayeq
+<img src="./assets/wahid-fayeq.jpg" alt="Wahid Fayeq" width="200">
 
-- GitHub: https://github.com/Wahid2025-Fayeq
-- LinkedIn: https://www.linkedin.com/in/wahid-fayeq-se/
+Wahid Fayeq is a Software Engineering student at TripleTen with a background in technical support, networking, and software development. He is passionate about building responsive web applications, solving technical challenges, and expanding his expertise in full-stack development, cloud technologies, and networking.
+
+### Connect with Me
+
+* GitHub: https://github.com/Wahid2025-Fayeq
+* LinkedIn: https://www.linkedin.com/in/wahid-fayeq-se/
 
 This project was developed as part of the TripleTen Software Engineering Program.
+
