@@ -14,6 +14,16 @@ function Navigation({ onLoginClick, isMenuOpen }) {
       >
         Home
       </NavLink>
+      <NavLink
+        to="/saved-news"
+        className={({ isActive }) =>
+          isActive
+            ? "navigation__link navigation__link_active"
+            : "navigation__link"
+        }
+      >
+        Saved News
+      </NavLink>
 
       <button
         type="button"
