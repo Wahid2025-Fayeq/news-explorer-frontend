@@ -28,7 +28,8 @@
   position: relative;
   display: flex;
   margin-bottom: 80px;
-  width: 608px;
+  width: 100%;
+  max-width: 608px;
   height: 64px;
   border-radius: 100px;
   background-color: #d1d2d6;
@@ -90,6 +91,7 @@
 
   .search__content {
     width: 100%;
+    max-width: 100%;
     padding-top: 0;
   }
 
@@ -104,7 +106,8 @@
   }
 
   .search__form {
-    width: 288px;
+    width: 100%;
+    max-width: 288px;
     height: 128px;
     margin: 0 auto;
     flex-direction: column;

@@ -75,7 +75,16 @@ function App() {
           }
         />
 
-        <Route path="/saved-news" element={<SavedNews />} />
+        <Route
+          path="/saved-news"
+          element={
+            <SavedNews
+              onLoginClick={handleLoginClick}
+              onMenuClick={handleMenuClick}
+              isMenuOpen={isMenuOpen}
+            />
+          }
+        />
       </Routes>
 
       <LoginModal isOpen={isLoginModalOpen} onClose={closeModal} />

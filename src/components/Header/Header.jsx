@@ -6,7 +6,7 @@ import "./Header.css";
 
 function Header({ onLoginClick, onMenuClick, isMenuOpen }) {
   return (
-    <header className="header">
+    <header className={`header ${isMenuOpen ? "header_opened" : ""}`}>
       <Link to="/" className="header__title">
         NewsExplorer
       </Link>

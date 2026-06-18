@@ -1,0 +1,26 @@
+.saved-news {
+  min-height: 100vh;
+  padding: 40px 104px;
+}
+
+.saved-news__title {
+  margin: 0 0 16px;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.saved-news__text {
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+@media screen and (max-width: 767px) {
+  .saved-news {
+    padding: 24px 16px;
+  }
+
+  .saved-news__title {
+    font-size: 30px;
+  }
+}

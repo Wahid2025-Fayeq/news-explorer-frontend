@@ -1,9 +1,13 @@
 import Header from "../Header/Header";
 
-function SavedNews() {
+function SavedNews({ onLoginClick, onMenuClick, isMenuOpen }) {
   return (
     <>
-      <Header />
+      <Header
+        onLoginClick={onLoginClick}
+        onMenuClick={onMenuClick}
+        isMenuOpen={isMenuOpen}
+      />
 
       <main className="saved-news">
         <h1 className="saved-news__title">Saved articles</h1>

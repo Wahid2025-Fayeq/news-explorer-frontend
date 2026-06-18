@@ -66,15 +66,15 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 22px;
-
     position: absolute;
     top: 56px;
     left: 0;
-    right: 0;
-
+    width: 100%;
+    height: 230px;
     padding: 16px;
     background-color: #1a1b22;
     z-index: 100;
+    box-sizing: border-box;
   }
 
   .navigation__link {
@@ -84,6 +84,7 @@
   .navigation__button {
     width: 100%;
     height: 56px;
+    border-radius: 100px;
   }
 
   .navigation__link_active::after {

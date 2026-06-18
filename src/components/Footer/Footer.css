@@ -1,5 +1,7 @@
 .footer {
   min-height: 80px;
+  max-width: 100%;
+  overflow-x: hidden;
   padding: 32px 104px;
   display: flex;
   justify-content: space-between;
@@ -85,17 +87,19 @@
 
   .footer__content {
     width: 100%;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto;
     align-items: flex-start;
   }
 
   .footer__nav {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
   }
 
   .footer__social {
+    justify-self: end;
     align-self: flex-start;
   }
 
