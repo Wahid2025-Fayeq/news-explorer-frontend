@@ -5,7 +5,6 @@ const newsApiBaseUrl =
 
 const apiKey = import.meta.env.VITE_NEWS_API_KEY;
 
-console.log("API Key:", import.meta.env.VITE_NEWS_API_KEY);
 const getDate = (daysAgo = 0) => {
   const date = new Date();
   date.setDate(date.getDate() - daysAgo);
