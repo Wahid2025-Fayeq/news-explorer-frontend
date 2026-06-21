@@ -164,3 +164,8 @@ Wahid Fayeq is a Software Engineering student at TripleTen with a background in 
 - LinkedIn: https://www.linkedin.com/in/wahid-fayeq-se/
 
 This project was developed as part of the TripleTen Software Engineering Program.
+
+## Project Pitch Video
+
+Check out [this video]https://www.loom.com/share/c343a584aa5a427a9c3c5f93b9a0cbef, where I describe my
+project and some challenges I faced while building it.
