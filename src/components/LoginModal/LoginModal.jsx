@@ -1,10 +1,14 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
-function LoginModal({ isOpen, onClose }) {
+function LoginModal({ isOpen, onClose, onRegisterClick }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <ModalWithForm title="Sign in" isOpen={isOpen} onClose={onClose}>
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <label className="login-form__label">Email</label>
 
         <input
@@ -27,7 +31,11 @@ function LoginModal({ isOpen, onClose }) {
 
         <p className="login-form__switch">
           or{" "}
-          <button type="button" className="login-form__link">
+          <button
+            type="button"
+            className="login-form__link"
+            onClick={onRegisterClick}
+          >
             Sign up
           </button>
         </p>

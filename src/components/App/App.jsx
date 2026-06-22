@@ -4,10 +4,11 @@ import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import LoginModal from "../LoginModal/LoginModal";
 import { getNews } from "../../utils/newsApi";
+import RegisterModal from "../RegisterModal/RegisterModal";
 import "./App.css";
 
 function App() {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState("");
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
@@ -16,7 +17,12 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLoginClick = () => {
-    setIsLoginModalOpen(true);
+    setActiveModal("login");
+    setIsMenuOpen(false);
+  };
+
+  const handleRegisterClick = () => {
+    setActiveModal("register");
     setIsMenuOpen(false);
   };
 
@@ -25,7 +31,7 @@ function App() {
   };
 
   const closeModal = () => {
-    setIsLoginModalOpen(false);
+    setActiveModal("");
   };
 
   const handleSearch = (keyword) => {
@@ -87,7 +93,16 @@ function App() {
         />
       </Routes>
 
-      <LoginModal isOpen={isLoginModalOpen} onClose={closeModal} />
+      <LoginModal
+        isOpen={activeModal === "login"}
+        onClose={closeModal}
+        onRegisterClick={handleRegisterClick}
+      />
+      <RegisterModal
+        isOpen={activeModal === "register"}
+        onClose={closeModal}
+        onLoginClick={handleLoginClick}
+      />
     </>
   );
 }
