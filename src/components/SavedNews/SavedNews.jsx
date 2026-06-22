@@ -8,6 +8,7 @@ function SavedNews({ onLoginClick, onMenuClick, isMenuOpen }) {
         onLoginClick={onLoginClick}
         onMenuClick={onMenuClick}
         isMenuOpen={isMenuOpen}
+        isSavedNews
       />
 
       <main className="saved-news">

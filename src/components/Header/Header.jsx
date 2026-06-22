@@ -4,9 +4,10 @@ import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.svg";
 import "./Header.css";
 
-function Header({ onLoginClick, onMenuClick, isMenuOpen }) {
+function Header({ onLoginClick, onMenuClick, isMenuOpen, isSavedNews }) {
   return (
-    <header className={`header ${isMenuOpen ? "header_opened" : ""}`}>
+    <header className={`header ${isMenuOpen ? "header_opened" : ""}
+    ${isSavedNews ? "header_saved-news" : ""}`}>
       <Link to="/" className="header__title">
         NewsExplorer
       </Link>
