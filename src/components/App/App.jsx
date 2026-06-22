@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import LoginModal from "../LoginModal/LoginModal";
@@ -15,6 +15,11 @@ function App() {
   const [error, setError] = useState("");
   const [visibleCards, setVisibleCards] = useState(3);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
   const handleLoginClick = () => {
     setActiveModal("login");
@@ -28,6 +33,10 @@ function App() {
 
   const handleMenuClick = () => {
     setIsMenuOpen((prev) => !prev);
+  };
+
+  const onCloseMenu = () => {
+    setIsMenuOpen(false);
   };
 
   const closeModal = () => {
@@ -76,6 +85,7 @@ function App() {
               error={error}
               showMoreVisible={visibleCards < articles.length}
               onMenuClick={handleMenuClick}
+              onCloseMenu={onCloseMenu}
               isMenuOpen={isMenuOpen}
             />
           }
@@ -88,6 +98,7 @@ function App() {
               onLoginClick={handleLoginClick}
               onMenuClick={handleMenuClick}
               isMenuOpen={isMenuOpen}
+              onCloseMenu={onCloseMenu}
             />
           }
         />

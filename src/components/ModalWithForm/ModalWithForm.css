@@ -2,7 +2,6 @@
   visibility: hidden;
   opacity: 0;
   position: fixed;
-
   inset: 0;
   width: 100%;
   height: 100%;
@@ -60,14 +59,22 @@
 }
 
 @media screen and (max-width: 767px) {
+  .modal {
+    padding-top: 56px;
+    align-items: flex-start;
+  }
   .modal__content {
-    width: calc(100% - 32px);
-    padding: 24px 20px;
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 16px 16px 0 0;
+    padding: 24px 16px;
   }
 
   .modal__close {
-    top: -44px;
-    right: 0;
+    top: -36px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
   }
 
   .modal__close-icon {

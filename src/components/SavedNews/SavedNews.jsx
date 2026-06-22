@@ -1,7 +1,13 @@
 import Header from "../Header/Header";
 import "./SavedNews.css";
 
-function SavedNews({ onLoginClick, onMenuClick, isMenuOpen }) {
+function SavedNews({
+  onLoginClick,
+  onMenuClick,
+  isMenuOpen,
+
+  onCloseMenu,
+}) {
   return (
     <>
       <Header
@@ -9,6 +15,7 @@ function SavedNews({ onLoginClick, onMenuClick, isMenuOpen }) {
         onMenuClick={onMenuClick}
         isMenuOpen={isMenuOpen}
         isSavedNews
+        onCloseMenu={onCloseMenu}
       />
 
       <main className="saved-news">

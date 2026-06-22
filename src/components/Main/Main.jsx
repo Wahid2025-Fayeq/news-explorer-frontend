@@ -19,6 +19,8 @@ function Main({
   showMoreVisible,
   onMenuClick,
   isMenuOpen,
+  onCloseMenu,
+  isModalOpen,
 }) {
   return (
     <>
@@ -30,6 +32,8 @@ function Main({
           onLoginClick={onLoginClick}
           onMenuClick={onMenuClick}
           isMenuOpen={isMenuOpen}
+          isModalOpen={isModalOpen}
+          onCloseMenu={onCloseMenu}
         />
         <SearchForm onSearch={onSearch} />
       </section>
@@ -49,9 +53,7 @@ function Main({
             alt="Not found"
             className="search-results__icon"
           />
-         <h2 className="search-results__not-found-title">
-    Nothing found
-  </h2>
+          <h2 className="search-results__not-found-title">Nothing found</h2>
           <p className="search-results__not-found-text">
             Sorry, but nothing matched your search term.
           </p>
