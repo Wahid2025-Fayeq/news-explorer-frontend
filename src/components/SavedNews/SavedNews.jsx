@@ -5,6 +5,7 @@ function SavedNews({
   onLoginClick,
   onMenuClick,
   isMenuOpen,
+  isLoggedin,
 
   onCloseMenu,
 }) {
@@ -16,6 +17,7 @@ function SavedNews({
         isMenuOpen={isMenuOpen}
         isSavedNews
         onCloseMenu={onCloseMenu}
+        isLoggedin={isLoggedin}
       />
 
       <main className="saved-news">

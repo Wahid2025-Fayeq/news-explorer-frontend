@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./Navigation.css";
 
-function Navigation({ onLoginClick, isMenuOpen, onCloseMenu }) {
+function Navigation({ onLoginClick, isMenuOpen, onCloseMenu, isLoggedin }) {
   return (
     <nav className={`navigation ${isMenuOpen ? "navigation_opened" : ""}`}>
       <NavLink
@@ -16,17 +16,19 @@ function Navigation({ onLoginClick, isMenuOpen, onCloseMenu }) {
         Home
       </NavLink>
 
-      <NavLink
-        to="/saved-news"
-        onClick={onCloseMenu}
-        className={({ isActive }) =>
-          isActive
-            ? "navigation__link navigation__link_active"
-            : "navigation__link"
-        }
-      >
-        Saved News
-      </NavLink>
+      {isLoggedin && (
+        <NavLink
+          to="/saved-news"
+          onClick={onCloseMenu}
+          className={({ isActive }) =>
+            isActive
+              ? "navigation__link navigation__link_active"
+              : "navigation__link"
+          }
+        >
+          Saved News
+        </NavLink>
+      )}
 
       <button
         type="button"

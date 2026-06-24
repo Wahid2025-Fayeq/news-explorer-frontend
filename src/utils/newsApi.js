@@ -11,6 +11,13 @@ const getDate = (daysAgo = 0) => {
   return date.toISOString().split("T")[0];
 };
 
+const _checkResponse = (res) => {
+  if (!res.ok) {
+    return Promise.reject(`Error: ${res.status}`);
+  }
+  return res.json();
+};
+
 export const getNews = (keyword) => {
   const url = new URL(newsApiBaseUrl);
 
@@ -20,11 +27,5 @@ export const getNews = (keyword) => {
   url.searchParams.set("to", getDate());
   url.searchParams.set("pageSize", 100);
 
-  return fetch(url).then((res) => {
-    if (!res.ok) {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-
-    return res.json();
-  });
+  return fetch(url).then(_checkResponse);
 };

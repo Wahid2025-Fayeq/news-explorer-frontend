@@ -56,7 +56,15 @@
   border: none;
   cursor: pointer;
   font-weight: 500;
+  transition:
+    opacity 0.3s ease,
+    background-color 0.3s ease;
 }
+.search__button:hover {
+  opacity: 0.8;
+  background-color: #347eff;
+}
+
 .search__error {
   display: block;
   margin-top: 8px;

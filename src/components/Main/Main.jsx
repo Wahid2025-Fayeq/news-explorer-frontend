@@ -21,6 +21,7 @@ function Main({
   isMenuOpen,
   onCloseMenu,
   isModalOpen,
+  isLoggedin,
 }) {
   return (
     <>
@@ -34,6 +35,7 @@ function Main({
           isMenuOpen={isMenuOpen}
           isModalOpen={isModalOpen}
           onCloseMenu={onCloseMenu}
+          isLoggedin={isLoggedin}
         />
         <SearchForm onSearch={onSearch} />
       </section>

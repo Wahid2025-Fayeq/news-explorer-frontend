@@ -2,7 +2,14 @@ import { useEffect } from "react";
 import closeIcon from "../../assets/close.svg";
 import "./ModalWithForm.css";
 
-function ModalWithForm({ isOpen, onClose, title, children }) {
+function ModalWithForm({
+  isOpen,
+  onClose,
+  title,
+  children,
+  onSubmit,
+  formClassName,
+}) {
   useEffect(() => {
     if (!isOpen) return;
 
@@ -28,7 +35,9 @@ function ModalWithForm({ isOpen, onClose, title, children }) {
 
         <h2 className="modal__title">{title}</h2>
 
-        {children}
+        <form className={formClassName} onSubmit={onSubmit}>
+          {children}
+        </form>
       </div>
     </div>
   );

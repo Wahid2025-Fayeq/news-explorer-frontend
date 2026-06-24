@@ -1,57 +1,90 @@
+import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
-function RegisterModal({ isOpen, onClose, onLoginClick }) {
+function RegisterModal({ isOpen, onClose, onLoginClick, onRegister }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
+  const isFormValid =
+    email.trim() !== "" && password.trim() !== "" && username.trim() !== "";
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle registration logic here
+    onRegister({ email, password, name: username });
   };
 
   return (
-    <ModalWithForm title="Sign up" isOpen={isOpen} onClose={onClose}>
-      <form className="register-form" onSubmit={handleSubmit}>
-        <label className="register-form__label">Email</label>
+    <ModalWithForm
+      title="Sign up"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+      formClassName="register-form"
+    >
+      <label htmlFor="register-email" className="register-form__label">
+        Email
+      </label>
 
-        <input
-          className="register-form__input"
-          type="email"
-          placeholder="Enter email"
-          required
-        />
+      <input
+        id="register-email"
+        className="register-form__input"
+        type="email"
+        placeholder="Enter email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
 
-        <label className="register-form__label">Password</label>
+      <label htmlFor="register-password" className="register-form__label">
+        Password
+      </label>
 
-        <input
-          className="register-form__input"
-          type="password"
-          placeholder="Enter password"
-          required
-        />
+      <input
+        id="register-password"
+        className="register-form__input"
+        type="password"
+        placeholder="Enter password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
 
-        <label className="register-form__label">Username</label>
+      <label htmlFor="register-username" className="register-form__label">
+        Username
+      </label>
 
-        <input
-          className="register-form__input"
-          type="text"
-          placeholder="Enter username"
-          required
-        />
+      <input
+        id="register-username"
+        className="register-form__input"
+        type="text"
+        placeholder="Enter username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        required
+      />
 
-        <button type="submit" className="register-form__button">
-          Sign up
+      <button
+        type="submit"
+        className={`register-form__button ${
+          isFormValid ? "register-form__button_active" : ""
+        }`}
+        disabled={!isFormValid}
+      >
+        Sign up
+      </button>
+
+      <p className="register-form__switch">
+        or{" "}
+        <button
+          type="button"
+          className="register-form__link"
+          onClick={onLoginClick}
+        >
+          Sign in
         </button>
-
-        <p className="register-form__switch">
-          or{" "}
-          <button
-            type="button"
-            className="register-form__link"
-            onClick={onLoginClick}
-          >
-            Sign in
-          </button>
-        </p>
-      </form>
+      </p>
     </ModalWithForm>
   );
 }

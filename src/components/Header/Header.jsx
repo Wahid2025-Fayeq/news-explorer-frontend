@@ -11,6 +11,7 @@ function Header({
   isMenuOpen,
   isSavedNews,
   onCloseMenu,
+  isLoggedin
 }) {
   return (
     <header
@@ -36,7 +37,9 @@ function Header({
       <Navigation
         onLoginClick={onLoginClick}
         isMenuOpen={isMenuOpen}
+        isSavedNews={isSavedNews}
         onCloseMenu={onCloseMenu}
+        isLoggedin={isLoggedin}
       />
     </header>
   );
