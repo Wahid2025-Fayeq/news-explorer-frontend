@@ -6,7 +6,7 @@
 
 .navigation__link {
   text-decoration: none;
-  color: #ffffff;
+  color: #f0f0f0;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   line-height: 24px;
@@ -45,6 +45,25 @@
 }
 .navigation__button:hover {
   opacity: 0.8;
+}
+.navigation__button_logged-in {
+  color: #f0f0f0;
+  border-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.navigation__logout-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navigation__logout-icon:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 1023px) {
@@ -112,7 +131,6 @@
   }
 
   .navigation.navigation_opened .navigation__button {
-    display: block;
     color: #ffffff;
     border-color: #ffffff;
   }

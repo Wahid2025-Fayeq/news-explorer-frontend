@@ -1,46 +1,39 @@
-export const register = ({ email, password, name }) => {
-  return new Promise((resolve, reject) => {
-    if (!email || !password || !name) {
-      reject("All fields are required");
-      return;
-    }
+const BASE_URL = "https://mine.bz.jumpingcrab.com/api";
 
-    resolve({
-      data: {
-        email,
-        name,
-        _id: "mock-user-id",
-      },
-    });
-  });
+const checkResponse = async (res) => {
+  const data = await res.json();
+
+  if (res.ok) {
+    return data;
+  }
+
+  return Promise.reject(data);
+};
+
+export const register = ({ email, password, name }) => {
+  return fetch(`${BASE_URL}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password, name }),
+  }).then(checkResponse);
 };
 
 export const authorize = ({ email, password }) => {
-  return new Promise((resolve, reject) => {
-    if (!email || !password) {
-      reject("Email and password are required");
-      return;
-    }
-
-    resolve({
-      token: "mock-token",
-    });
-  });
+  return fetch(`${BASE_URL}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  }).then(checkResponse);
 };
 
 export const checkToken = (token) => {
-  return new Promise((resolve, reject) => {
-    if (!token) {
-      reject("Invalid token");
-      return;
-    }
-
-    resolve({
-      data: {
-        name: "Wahid",
-        email: "wahid@example.com",
-        _id: "mock-user-id",
-      },
-    });
-  });
+  return fetch(`${BASE_URL}/users/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
 };

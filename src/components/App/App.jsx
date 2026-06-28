@@ -1,24 +1,58 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Main from "../Main/Main";
-import { authorize, register } from "../../utils/auth";
+import { authorize, register, checkToken } from "../../utils/auth";
 import SavedNews from "../SavedNews/SavedNews";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import LoginModal from "../LoginModal/LoginModal";
 import { getNews } from "../../utils/newsApi";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
+import {
+  getSavedArticles,
+  saveArticle,
+  deleteArticle,
+} from "../../utils/MainApi";
 import "./App.css";
 
 function App() {
   const [isLoggedin, setIsLoggedin] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [articles, setArticles] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [error, setError] = useState("");
   const [visibleCards, setVisibleCards] = useState(3);
+  const [savedArticles, setSavedArticles] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentKeyword, setCurrentKeyword] = useState("");
   const location = useLocation();
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwt");
+
+    if (!token) {
+      return;
+    }
+
+    checkToken(token)
+      .then((userData) => {
+        setIsLoggedin(true);
+        setCurrentUser(userData);
+        return getSavedArticles();
+      })
+      .then((savedArticlesData) => {
+        setSavedArticles(savedArticlesData);
+      })
+      .catch(() => {
+        localStorage.removeItem("jwt");
+        setIsLoggedin(false);
+        setCurrentUser(null);
+        setSavedArticles([]);
+      });
+  }, []);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -47,6 +81,7 @@ function App() {
   };
 
   const handleSearch = (keyword) => {
+    setCurrentKeyword(keyword);
     setIsLoading(true);
     setError("");
     setHasSearched(true);
@@ -54,7 +89,12 @@ function App() {
 
     getNews(keyword)
       .then((data) => {
-        setArticles(data.articles || []);
+        const articlesWithKeyword = (data.articles || []).map((article) => ({
+          ...article,
+          keyword,
+        }));
+
+        setArticles(articlesWithKeyword);
       })
       .catch(() => {
         setArticles([]);
@@ -73,25 +113,64 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
-    authorize({ email, password })
+    return authorize({ email, password })
       .then((data) => {
         localStorage.setItem("jwt", data.token);
+        return checkToken(data.token);
+      })
+      .then((userData) => {
         setIsLoggedin(true);
+        setCurrentUser(userData);
+        return getSavedArticles();
+      })
+      .then((savedArticlesData) => {
+        setSavedArticles(savedArticlesData);
         closeModal();
+      })
+      .catch((err) => {
+        console.error(err);
+        return Promise.reject(err);
+      });
+  };
+
+  const handleRegister = ({ email, password, name }) => {
+    return register({ email, password, name })
+      .then(() => {
+        setActiveModal("success");
+      })
+      .catch((err) => {
+        console.error(err);
+        return Promise.reject(err);
+      });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedin(false);
+    setCurrentUser(null);
+    setSavedArticles([]);
+  };
+
+  const handleSaveArticle = (article) => {
+    saveArticle(article)
+      .then((newArticle) => {
+        setSavedArticles((state) => [newArticle, ...state]);
       })
       .catch(console.error);
   };
 
-  const handleRegister = ({ email, password, name }) => {
-    register({ email, password, name })
+  const handleDeleteArticle = (articleId) => {
+    deleteArticle(articleId)
       .then(() => {
-        handleLogin({ email, password });
+        setSavedArticles((state) =>
+          state.filter((article) => article._id !== articleId),
+        );
       })
       .catch(console.error);
   };
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Routes>
         <Route
           path="/"
@@ -109,6 +188,11 @@ function App() {
               onCloseMenu={onCloseMenu}
               isMenuOpen={isMenuOpen}
               isLoggedin={isLoggedin}
+              onLogout={handleLogout}
+              onSaveArticle={handleSaveArticle}
+              onDeleteArticle={handleDeleteArticle}
+              savedArticles={savedArticles}
+              currentKeyword={currentKeyword}
             />
           }
         />
@@ -123,6 +207,9 @@ function App() {
                 isMenuOpen={isMenuOpen}
                 onCloseMenu={onCloseMenu}
                 isLoggedin={isLoggedin}
+                onLogout={handleLogout}
+                onDeleteArticle={handleDeleteArticle}
+                savedArticles={savedArticles}
               />
             </ProtectedRoute>
           }
@@ -141,7 +228,15 @@ function App() {
         onLoginClick={handleLoginClick}
         onRegister={handleRegister}
       />
-    </>
+      <InfoTooltip
+        isOpen={activeModal === "success"}
+        onClose={closeModal}
+        onLoginClick={() => {
+          closeModal();
+          handleLoginClick();
+        }}
+      />
+    </CurrentUserContext.Provider>
   );
 }
 

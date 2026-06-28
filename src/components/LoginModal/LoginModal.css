@@ -63,3 +63,17 @@
   cursor: pointer;
   padding: 0;
 }
+.login-form__error {
+  min-height: 16px;
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.login-form__server-error {
+  min-height: 16px;
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+}

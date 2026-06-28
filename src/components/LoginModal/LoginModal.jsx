@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import "./LoginModal.css";
 
 function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormAndValidation();
+  const [serverError, setServerError] = useState("");
 
-  const isFormValid = email.trim() !== "" && password.trim() !== "";
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+      setServerError("");
+    }
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({ email, password });
+    onLogin({
+      email: values.email,
+      password: values.password,
+    }).catch((err) => {
+      setServerError(
+        err.message || "Something went wrong. Please try again later.",
+      );
+    });
   };
 
   return (
@@ -21,19 +35,22 @@ function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
       onSubmit={handleSubmit}
       formClassName="login-form"
     >
-    <label htmlFor="login-email" className="login-form__label">
-  Email
-</label>
+      <label htmlFor="login-email" className="login-form__label">
+        Email
+      </label>
 
       <input
-  id="login-email"
-  className="login-form__input"
-  type="email"
-  placeholder="Enter email"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  required
-/>
+        id="login-email"
+        name="email"
+        className="login-form__input"
+        type="email"
+        placeholder="Enter email"
+        value={values.email || ""}
+        onChange={handleChange}
+        required
+      />
+
+      <span className="login-form__error">{errors.email}</span>
 
       <label htmlFor="login-password" className="login-form__label">
         Password
@@ -43,18 +60,21 @@ function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
         id="login-password"
         className="login-form__input"
         type="password"
+        name="password"
         placeholder="Enter password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={values.password || ""}
+        onChange={handleChange}
         required
       />
+      <span className="login-form__error">{errors.password}</span>
+      <span className="login-form__server-error">{serverError}</span>
 
       <button
         type="submit"
         className={`login-form__button ${
-          isFormValid ? "login-form__button_active" : ""
+          isValid ? "login-form__button_active" : ""
         }`}
-        disabled={!isFormValid}
+        disabled={!isValid}
       >
         Sign in
       </button>

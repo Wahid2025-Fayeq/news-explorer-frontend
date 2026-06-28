@@ -1,18 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import "./RegisterModal.css";
 
 function RegisterModal({ isOpen, onClose, onLoginClick, onRegister }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const { values, errors, isValid, handleChange, resetForm } =
+    useFormAndValidation();
+  const [serverError, setServerError] = useState("");
 
-  const isFormValid =
-    email.trim() !== "" && password.trim() !== "" && username.trim() !== "";
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+      setServerError("");
+    }
+  }, [isOpen, resetForm]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister({ email, password, name: username });
+
+    onRegister({
+      email: values.email,
+      password: values.password,
+      name: values.username,
+    }).catch((err) => {
+      setServerError(
+        err.message || "Something went wrong. Please try again later.",
+      );
+    });
   };
 
   return (
@@ -29,13 +43,15 @@ function RegisterModal({ isOpen, onClose, onLoginClick, onRegister }) {
 
       <input
         id="register-email"
+        name="email"
         className="register-form__input"
         type="email"
         placeholder="Enter email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={values.email || ""}
+        onChange={handleChange}
         required
       />
+      <span className="register-form__error">{errors.email}</span>
 
       <label htmlFor="register-password" className="register-form__label">
         Password
@@ -43,13 +59,17 @@ function RegisterModal({ isOpen, onClose, onLoginClick, onRegister }) {
 
       <input
         id="register-password"
+        name="password"
         className="register-form__input"
         type="password"
         placeholder="Enter password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={values.password || ""}
+        onChange={handleChange}
+        minLength="8"
         required
       />
+
+      <span className="register-form__error">{errors.password}</span>
 
       <label htmlFor="register-username" className="register-form__label">
         Username
@@ -57,20 +77,26 @@ function RegisterModal({ isOpen, onClose, onLoginClick, onRegister }) {
 
       <input
         id="register-username"
+        name="username"
         className="register-form__input"
         type="text"
         placeholder="Enter username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={values.username || ""}
+        onChange={handleChange}
+        minLength="2"
+        maxLength="30"
         required
       />
+
+      <span className="register-form__error">{errors.username}</span>
+      <span className="register-form__server-error">{serverError}</span>
 
       <button
         type="submit"
         className={`register-form__button ${
-          isFormValid ? "register-form__button_active" : ""
+          isValid ? "register-form__button_active" : ""
         }`}
-        disabled={!isFormValid}
+        disabled={!isValid}
       >
         Sign up
       </button>

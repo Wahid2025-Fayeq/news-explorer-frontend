@@ -11,7 +11,8 @@ function Header({
   isMenuOpen,
   isSavedNews,
   onCloseMenu,
-  isLoggedin
+  isLoggedin,
+  onLogout,
 }) {
   return (
     <header
@@ -40,6 +41,7 @@ function Header({
         isSavedNews={isSavedNews}
         onCloseMenu={onCloseMenu}
         isLoggedin={isLoggedin}
+        onLogout={onLogout}
       />
     </header>
   );

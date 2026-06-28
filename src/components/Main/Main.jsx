@@ -22,6 +22,11 @@ function Main({
   onCloseMenu,
   isModalOpen,
   isLoggedin,
+  onLogout,
+  onSaveArticle,
+  onDeleteArticle,
+  savedArticles,
+  currentKeyword,
 }) {
   return (
     <>
@@ -36,6 +41,7 @@ function Main({
           isModalOpen={isModalOpen}
           onCloseMenu={onCloseMenu}
           isLoggedin={isLoggedin}
+          onLogout={onLogout}
         />
         <SearchForm onSearch={onSearch} />
       </section>
@@ -68,6 +74,11 @@ function Main({
             cards={articles}
             onShowMore={onShowMore}
             showMoreVisible={showMoreVisible}
+            onSaveArticle={onSaveArticle}
+            onDeleteArticle={onDeleteArticle}
+            savedArticles={savedArticles}
+            isLoggedin={isLoggedin}
+            onLoginClick={onLoginClick}
           />
         </section>
       )}
