@@ -1,11 +1,35 @@
+.info-tooltip__container {
+  width: 430px;
+  min-height: 182px;
+  padding: 43px 36px 51px;
+}
+
+.info-tooltip__container .modal__title {
+  margin: 0 0 14px;
+  max-width: 315px;
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  line-height: 100%;
+}
+
+.info-tooltip {
+  margin: 0;
+}
+
+.modal:has(.info-tooltip__container) {
+  padding-top: 279px;
+}
+
 .info-tooltip__link {
-  margin-top: 14px;
-  padding: 0;
   border: none;
+  padding: 0;
   background: transparent;
   color: #2f71e5;
   font-size: 18px;
-  line-height: 22px;
+  font-family: "Roboto", sans-serif;
+  line-height: 100%;
+  font-weight: 400;
   cursor: pointer;
 }
 

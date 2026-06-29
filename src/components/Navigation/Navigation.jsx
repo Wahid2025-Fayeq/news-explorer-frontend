@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import logoutIcon from "../../assets/logout.svg";
+import logoutDarkIcon from "../../assets/logout-dark.svg";
 import "./Navigation.css";
 
 function Navigation({
@@ -10,6 +11,7 @@ function Navigation({
   onCloseMenu,
   isLoggedin,
   onLogout,
+  isSavedNews,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -51,7 +53,7 @@ function Navigation({
         >
           <span>{currentUser?.name}</span>
           <img
-            src={logoutIcon}
+            src={isSavedNews && !isMenuOpen ? logoutDarkIcon : logoutIcon}
             alt="Logout"
             className="navigation__logout-icon"
           />

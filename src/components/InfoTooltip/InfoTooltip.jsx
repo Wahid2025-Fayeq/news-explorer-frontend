@@ -4,10 +4,11 @@ import "./InfoTooltip.css";
 function InfoTooltip({ isOpen, onClose, onLoginClick }) {
   return (
     <ModalWithForm
-      title="Register successfully completed"
+      title="Registration successfully completed!"
       isOpen={isOpen}
       onClose={onClose}
       formClassName="info-tooltip"
+      containerClassName="info-tooltip__container"
     >
       <button
         type="button"

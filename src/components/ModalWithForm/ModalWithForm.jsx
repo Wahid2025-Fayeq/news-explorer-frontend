@@ -9,6 +9,7 @@ function ModalWithForm({
   children,
   onSubmit,
   formClassName,
+  containerClassName,
 }) {
   useEffect(() => {
     if (!isOpen) return;
@@ -28,7 +29,10 @@ function ModalWithForm({
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`} onClick={onClose}>
-      <div className="modal__content" onClick={(e) => e.stopPropagation()}>
+      <div
+        className={`modal__content ${containerClassName || ""}`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <button type="button" className="modal__close" onClick={onClose}>
           <img src={closeIcon} alt="Close" className="modal__close-icon" />
         </button>

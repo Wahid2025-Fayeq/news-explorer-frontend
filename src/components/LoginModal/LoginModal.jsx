@@ -15,15 +15,19 @@ function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
     }
   }, [isOpen, resetForm]);
 
+  const handleInputChange = (e) => {
+    handleChange(e);
+    setServerError("");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     onLogin({
       email: values.email,
       password: values.password,
-    }).catch((err) => {
-      setServerError(
-        err.message || "Something went wrong. Please try again later.",
-      );
+    }).catch(() => {
+      setServerError("Incorrect email or password");
     });
   };
 
@@ -46,8 +50,16 @@ function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
         type="email"
         placeholder="Enter email"
         value={values.email || ""}
-        onChange={handleChange}
+        onChange={handleInputChange}
         required
+        onInvalid={(e) => {
+          if (e.target.validity.valueMissing) {
+            e.target.setCustomValidity("Email is required");
+          } else if (e.target.validity.typeMismatch) {
+            e.target.setCustomValidity("Invalid email address");
+          }
+        }}
+        onInput={(e) => e.target.setCustomValidity("")}
       />
 
       <span className="login-form__error">{errors.email}</span>
@@ -63,8 +75,14 @@ function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
         name="password"
         placeholder="Enter password"
         value={values.password || ""}
-        onChange={handleChange}
+        onChange={handleInputChange}
         required
+        onInvalid={(e) => {
+          if (e.target.validity.valueMissing) {
+            e.target.setCustomValidity("Password is required");
+          }
+        }}
+        onInput={(e) => e.target.setCustomValidity("")}
       />
       <span className="login-form__error">{errors.password}</span>
       <span className="login-form__server-error">{serverError}</span>
