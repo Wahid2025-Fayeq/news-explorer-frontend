@@ -206,7 +206,10 @@ function App() {
           path="/saved-news"
           element={
             isAuthChecked && (
-              <ProtectedRoute isLoggedin={isLoggedin}>
+              <ProtectedRoute
+                isLoggedin={isLoggedin}
+                onLoginClick={handleLoginClick}
+              >
                 <SavedNews
                   onLoginClick={handleLoginClick}
                   onMenuClick={handleMenuClick}
