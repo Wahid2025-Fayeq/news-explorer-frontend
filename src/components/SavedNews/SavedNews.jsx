@@ -16,13 +16,18 @@ function SavedNews({
 }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const keywords = [
-    ...new Set(savedArticles.map((article) => article.keyword)),
-  ];
+  const keywordCounts = savedArticles.reduce((counts, article) => {
+    counts[article.keyword] = (counts[article.keyword] || 0) + 1;
+    return counts;
+  }, {});
+
+  const keywords = Object.keys(keywordCounts).sort(
+    (a, b) => keywordCounts[b] - keywordCounts[a],
+  );
 
   const keywordsText =
     keywords.length > 3
-      ? `${keywords.slice(0, 2).join(", ")}, and ${keywords.length - 2} others`
+      ? `${keywords.slice(0, 2).join(", ")}, and ${keywords.length - 2} more`
       : keywords.join(", ");
 
   return (
