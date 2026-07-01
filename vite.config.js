@@ -9,5 +9,5 @@ export default defineConfig({
     host: "localhost",
     open: true,
   },
-  base: "/news-explorer-frontend/",
+  base: "/",
 });
