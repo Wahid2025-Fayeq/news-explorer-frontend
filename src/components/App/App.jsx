@@ -28,12 +28,14 @@ function App() {
   const [savedArticles, setSavedArticles] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentKeyword, setCurrentKeyword] = useState("");
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
 
     if (!token) {
+      setIsAuthChecked(true);
       return;
     }
 
@@ -51,6 +53,9 @@ function App() {
         setIsLoggedin(false);
         setCurrentUser(null);
         setSavedArticles([]);
+      })
+      .finally(() => {
+        setIsAuthChecked(true);
       });
   }, []);
 
@@ -200,18 +205,20 @@ function App() {
         <Route
           path="/saved-news"
           element={
-            <ProtectedRoute isLoggedin={isLoggedin}>
-              <SavedNews
-                onLoginClick={handleLoginClick}
-                onMenuClick={handleMenuClick}
-                isMenuOpen={isMenuOpen}
-                onCloseMenu={onCloseMenu}
-                isLoggedin={isLoggedin}
-                onLogout={handleLogout}
-                onDeleteArticle={handleDeleteArticle}
-                savedArticles={savedArticles}
-              />
-            </ProtectedRoute>
+            isAuthChecked && (
+              <ProtectedRoute isLoggedin={isLoggedin}>
+                <SavedNews
+                  onLoginClick={handleLoginClick}
+                  onMenuClick={handleMenuClick}
+                  isMenuOpen={isMenuOpen}
+                  onCloseMenu={onCloseMenu}
+                  isLoggedin={isLoggedin}
+                  onLogout={handleLogout}
+                  onDeleteArticle={handleDeleteArticle}
+                  savedArticles={savedArticles}
+                />
+              </ProtectedRoute>
+            )
           }
         />
       </Routes>
