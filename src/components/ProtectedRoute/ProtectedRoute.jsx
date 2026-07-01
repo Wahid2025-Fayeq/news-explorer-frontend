@@ -1,16 +1,19 @@
-import { Navigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 
-function ProtectedRoute({ children, isLoggedin, onLoginClick }) {
-  useEffect(() => {
-    if (!isLoggedin) {
-      onLoginClick();
-    }
-  }, [isLoggedin, onLoginClick]);
+function ProtectedRoute({ children, isLoggedin, openLoginOnRedirect = true }) {
+  const location = useLocation();
 
   if (!isLoggedin) {
-    return <Navigate to="/" replace />;
+    return (
+      <Navigate
+        to="/"
+        replace
+        state={{ openLogin: openLoginOnRedirect, from: location.pathname }}
+      />
+    );
   }
+
   return children;
 }
+
 export default ProtectedRoute;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Main from "../Main/Main";
 import { authorize, register, checkToken } from "../../utils/auth";
 import SavedNews from "../SavedNews/SavedNews";
@@ -29,7 +29,9 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentKeyword, setCurrentKeyword] = useState("");
   const [isAuthChecked, setIsAuthChecked] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
@@ -64,14 +66,22 @@ function App() {
   }, [location.pathname]);
 
   const handleLoginClick = () => {
+    setIsLoggingOut(false);
     setActiveModal("login");
     setIsMenuOpen(false);
   };
-
   const handleRegisterClick = () => {
     setActiveModal("register");
     setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (isAuthChecked && !isLoggedin && location.state?.openLogin) {
+      setActiveModal("login");
+      setIsMenuOpen(false);
+      navigate("/", { replace: true, state: null });
+    }
+  }, [isAuthChecked, isLoggedin, location.state?.openLogin, navigate]);
 
   const handleMenuClick = () => {
     setIsMenuOpen((prev) => !prev);
@@ -84,6 +94,11 @@ function App() {
   const closeModal = () => {
     setActiveModal("");
   };
+  useEffect(() => {
+    if (location.pathname === "/" && isLoggingOut) {
+      setIsLoggingOut(false);
+    }
+  }, [location.pathname, isLoggingOut]);
 
   const handleSearch = (keyword) => {
     setCurrentKeyword(keyword);
@@ -150,10 +165,13 @@ function App() {
   };
 
   const handleLogout = () => {
+    setIsLoggingOut(true);
     localStorage.removeItem("jwt");
     setIsLoggedin(false);
     setCurrentUser(null);
     setSavedArticles([]);
+    setActiveModal("");
+    navigate("/", { replace: true, state: null });
   };
 
   const handleSaveArticle = (article) => {
@@ -208,7 +226,7 @@ function App() {
             isAuthChecked && (
               <ProtectedRoute
                 isLoggedin={isLoggedin}
-                onLoginClick={handleLoginClick}
+                openLoginOnRedirect={!isLoggingOut}
               >
                 <SavedNews
                   onLoginClick={handleLoginClick}

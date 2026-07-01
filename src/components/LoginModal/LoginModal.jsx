@@ -22,7 +22,9 @@ function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (!isValid) {
+      return;
+    }
     onLogin({
       email: values.email,
       password: values.password,
@@ -52,14 +54,6 @@ function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
         value={values.email || ""}
         onChange={handleInputChange}
         required
-        onInvalid={(e) => {
-          if (e.target.validity.valueMissing) {
-            e.target.setCustomValidity("Email is required");
-          } else if (e.target.validity.typeMismatch) {
-            e.target.setCustomValidity("Invalid email address");
-          }
-        }}
-        onInput={(e) => e.target.setCustomValidity("")}
       />
 
       <span className="login-form__error">{errors.email}</span>
@@ -77,12 +71,6 @@ function LoginModal({ isOpen, onClose, onRegisterClick, onLogin }) {
         value={values.password || ""}
         onChange={handleInputChange}
         required
-        onInvalid={(e) => {
-          if (e.target.validity.valueMissing) {
-            e.target.setCustomValidity("Password is required");
-          }
-        }}
-        onInput={(e) => e.target.setCustomValidity("")}
       />
       <span className="login-form__error">{errors.password}</span>
       <span className="login-form__server-error">{serverError}</span>
