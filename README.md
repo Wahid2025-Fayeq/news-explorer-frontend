@@ -1,16 +1,37 @@
-# News Explorer Frontend
+# News Explorer
 
 ## Live Demo
 
-https://wahid2025-fayeq.github.io/news-explorer-frontend/
+Frontend: https://newsexplorer.xyz  
+Backend API: https://api.newsexplorer.xyz
+
+## Repository
+
+Frontend Repository: https://github.com/Wahid2025-Fayeq/news-explorer-frontend
+
+Backend Repository: https://github.com/Wahid2025-Fayeq/news-explorer-backend
 
 ## Overview
 
-News Explorer is a responsive news search application built with React and Vite. Users can search for the latest news articles by keyword and view results from a live news API. The project focuses on modern frontend development practices, responsive design, API integration, and component-based architecture.
-
-This project is currently the frontend portion of a larger application and will be expanded into a full-stack application with user authentication and article-saving functionality.
+News Explorer is a full-stack web application that allows users to search for the latest news, create an account, sign in securely, and save favorite articles for future reading. The frontend is built with React and Vite, while the backend uses Express, MongoDB, and JWT authentication. Both applications are deployed on Google Cloud with Nginx and HTTPS.
 
 ---
+
+### Homepage
+
+![Homepage](./screenshots/homepage.png)
+
+### Search Results
+
+![Search Results](./screenshots/search-results.png)
+
+### Sign In
+
+![Sign In](./screenshots/login.png)
+
+### Saved Articles
+
+![Saved Articles](./screenshots/saved-articles.png)
 
 ## Features
 
@@ -25,6 +46,12 @@ This project is currently the frontend portion of a larger application and will 
 - Login modal interface
 - React Router navigation
 - Clean and reusable component architecture
+- User registration
+- Secure user authentication (JWT)
+- Protected routes
+- Save favorite articles
+- Delete saved articles
+- Persistent storage with MongoDB
 
 ---
 
@@ -40,6 +67,20 @@ This project is currently the frontend portion of a larger application and will 
 - CSS3
 - Responsive Web Design
 - BEM Methodology
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcryptjs
+- Celebrate/Joi Validation
+- PM2
+- Nginx
+- Google Cloud VM
+- Let's Encrypt SSL
 
 ### API Integration
 
@@ -100,30 +141,12 @@ src/
 
 ---
 
-## Future Development
-
-This project is planned to evolve into a full-stack application.
-
-Future features include:
-
-- User registration
-- User authentication with JWT
-- Protected routes
-- Save and remove articles
-- User profile management
-- Backend API with Node.js and Express
-- MongoDB database integration
-- Persistent article storage
-- Deployment of frontend and backend services
-
----
-
 ## Installation
 
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Wahid2025-Fayeq/news-explorer-frontend.git
 ```
 
 Install dependencies:
@@ -137,6 +160,8 @@ Create a `.env` file:
 ```env
 VITE_NEWS_API_KEY=your_api_key
 ```
+
+> Note: This repository contains the frontend application. To use authentication and saved articles, the News Explorer backend must also be running and accessible.
 
 Start the development server:
 
@@ -167,5 +192,4 @@ This project was developed as part of the TripleTen Software Engineering Program
 
 ## Project Pitch Video
 
-Check out [this video]https://www.loom.com/share/c343a584aa5a427a9c3c5f93b9a0cbef, where I describe my
-project and some challenges I faced while building it.
+Check out [this video](https://www.loom.com/share/c343a584aa5a427a9c3c5f93b9a0cbef), where I describe my project and some of the challenges I faced while building it.
