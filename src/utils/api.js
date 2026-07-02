@@ -1,4 +1,4 @@
-const BASE_URL = "https://mine.bz.jumpingcrab.com/api";
+const BASE_URL = "https://api.newsexplorer.xyz";
 
 const checkResponse = (res) => {
   if (res.ok) {

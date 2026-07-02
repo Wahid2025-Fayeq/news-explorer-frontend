@@ -1,4 +1,4 @@
-const BASE_URL = "https://mine.bz.jumpingcrab.com/api";
+const BASE_URL = "https://api.newsexplorer.xyz";
 
 const checkResponse = async (res) => {
   const data = await res.json();
