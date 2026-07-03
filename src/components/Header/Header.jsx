@@ -13,6 +13,7 @@ function Header({
   onCloseMenu,
   isLoggedin,
   onLogout,
+  isModalOpen,
 }) {
   return (
     <header
@@ -25,8 +26,10 @@ function Header({
 
       <button
         type="button"
-        className="header__menu-button"
+        className={`header__menu-button ${isModalOpen ? "header__menu-button_hidden" : ""}`}
         onClick={onMenuClick}
+        aria-hidden={isModalOpen}
+        tabIndex={isModalOpen ? -1 : 0}
       >
         <img
           src={isMenuOpen ? closeIcon : isSavedNews ? menuDarkIcon : menuIcon}

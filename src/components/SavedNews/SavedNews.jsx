@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Header from "../Header/Header";
 import NewsCard from "../NewsCard/NewsCard";
+import Footer from "../Footer/Footer";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./SavedNews.css";
 
@@ -13,6 +14,7 @@ function SavedNews({
   onLogout,
   savedArticles,
   onDeleteArticle,
+  isModalOpen,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -40,6 +42,7 @@ function SavedNews({
         onCloseMenu={onCloseMenu}
         isLoggedin={isLoggedin}
         onLogout={onLogout}
+        isModalOpen={isModalOpen}
       />
 
       <main className="saved-news">
@@ -73,6 +76,8 @@ function SavedNews({
           ))}
         </section>
       </main>
+
+      <Footer />
     </>
   );
 }

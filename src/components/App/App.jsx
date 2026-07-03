@@ -193,78 +193,82 @@ function App() {
   };
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Main
-              onLoginClick={handleLoginClick}
-              onSearch={handleSearch}
-              articles={articles.slice(0, visibleCards)}
-              isLoading={isLoading}
-              hasSearched={hasSearched}
-              onShowMore={handleShowMore}
-              error={error}
-              showMoreVisible={visibleCards < articles.length}
-              onMenuClick={handleMenuClick}
-              onCloseMenu={onCloseMenu}
-              isMenuOpen={isMenuOpen}
-              isLoggedin={isLoggedin}
-              onLogout={handleLogout}
-              onSaveArticle={handleSaveArticle}
-              onDeleteArticle={handleDeleteArticle}
-              savedArticles={savedArticles}
-              currentKeyword={currentKeyword}
-            />
-          }
-        />
-
-        <Route
-          path="/saved-news"
-          element={
-            isAuthChecked && (
-              <ProtectedRoute
+    <div className={activeModal ? "app_modal-open" : ""}>
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                onLoginClick={handleLoginClick}
+                onSearch={handleSearch}
+                articles={articles.slice(0, visibleCards)}
+                isLoading={isLoading}
+                hasSearched={hasSearched}
+                onShowMore={handleShowMore}
+                error={error}
+                showMoreVisible={visibleCards < articles.length}
+                onMenuClick={handleMenuClick}
+                onCloseMenu={onCloseMenu}
+                isMenuOpen={isMenuOpen}
                 isLoggedin={isLoggedin}
-                openLoginOnRedirect={!isLoggingOut}
-              >
-                <SavedNews
-                  onLoginClick={handleLoginClick}
-                  onMenuClick={handleMenuClick}
-                  isMenuOpen={isMenuOpen}
-                  onCloseMenu={onCloseMenu}
-                  isLoggedin={isLoggedin}
-                  onLogout={handleLogout}
-                  onDeleteArticle={handleDeleteArticle}
-                  savedArticles={savedArticles}
-                />
-              </ProtectedRoute>
-            )
-          }
-        />
-      </Routes>
+                onLogout={handleLogout}
+                isModalOpen={Boolean(activeModal)}
+                onSaveArticle={handleSaveArticle}
+                onDeleteArticle={handleDeleteArticle}
+                savedArticles={savedArticles}
+                currentKeyword={currentKeyword}
+              />
+            }
+          />
 
-      <LoginModal
-        isOpen={activeModal === "login"}
-        onClose={closeModal}
-        onRegisterClick={handleRegisterClick}
-        onLogin={handleLogin}
-      />
-      <RegisterModal
-        isOpen={activeModal === "register"}
-        onClose={closeModal}
-        onLoginClick={handleLoginClick}
-        onRegister={handleRegister}
-      />
-      <InfoTooltip
-        isOpen={activeModal === "success"}
-        onClose={closeModal}
-        onLoginClick={() => {
-          closeModal();
-          handleLoginClick();
-        }}
-      />
-    </CurrentUserContext.Provider>
+          <Route
+            path="/saved-news"
+            element={
+              isAuthChecked && (
+                <ProtectedRoute
+                  isLoggedin={isLoggedin}
+                  openLoginOnRedirect={!isLoggingOut}
+                >
+                  <SavedNews
+                    onLoginClick={handleLoginClick}
+                    onMenuClick={handleMenuClick}
+                    isMenuOpen={isMenuOpen}
+                    onCloseMenu={onCloseMenu}
+                    isLoggedin={isLoggedin}
+                    onLogout={handleLogout}
+                    onDeleteArticle={handleDeleteArticle}
+                    savedArticles={savedArticles}
+                    isModalOpen={Boolean(activeModal)}
+                  />
+                </ProtectedRoute>
+              )
+            }
+          />
+        </Routes>
+
+        <LoginModal
+          isOpen={activeModal === "login"}
+          onClose={closeModal}
+          onRegisterClick={handleRegisterClick}
+          onLogin={handleLogin}
+        />
+        <RegisterModal
+          isOpen={activeModal === "register"}
+          onClose={closeModal}
+          onLoginClick={handleLoginClick}
+          onRegister={handleRegister}
+        />
+        <InfoTooltip
+          isOpen={activeModal === "success"}
+          onClose={closeModal}
+          onLoginClick={() => {
+            closeModal();
+            handleLoginClick();
+          }}
+        />
+      </CurrentUserContext.Provider>
+    </div>
   );
 }
 

@@ -44,6 +44,11 @@
   display: block;
   color: #ffffff;
 }
+
+.header__menu-button.header__menu-button_hidden {
+  display: none;
+}
+
 .header_saved-news {
   background-color: #ffffff;
   border-bottom: 1px solid#D1D2D6;
@@ -103,6 +108,10 @@
   }
 
   .app_modal-open .header__menu-button {
+    display: none;
+  }
+
+  .header__menu-button.header__menu-button_hidden {
     display: none;
   }
 }

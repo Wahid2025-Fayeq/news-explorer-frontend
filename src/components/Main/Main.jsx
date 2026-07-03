@@ -42,6 +42,7 @@ function Main({
           onCloseMenu={onCloseMenu}
           isLoggedin={isLoggedin}
           onLogout={onLogout}
+          isModalOpen={isModalOpen}
         />
         <SearchForm onSearch={onSearch} />
       </section>
